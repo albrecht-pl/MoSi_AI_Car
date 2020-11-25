@@ -29,6 +29,7 @@ time.sleep(5)
 while True:
     for counter_move in range(1,50):
         car.ps = car.ps.move(2,0)
+        background.fill((255,255,255))
         background.blit(car.image, car.ps)
         pygame.display.flip()
         time.sleep(0.02)
