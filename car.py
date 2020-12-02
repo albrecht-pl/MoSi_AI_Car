@@ -4,10 +4,9 @@ import time
 class Car:
 
 
-	x = 0
-	y = 0
-
-	rotation = 0;
+    global x
+    global y
+    global rotation
 
     def __init__(self):
         self.image = pygame.image.load("Car_911.png")
@@ -19,3 +18,4 @@ class Car:
 
 
     def draw():
+        print("NO")

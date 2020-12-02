@@ -1,6 +1,6 @@
 import pygame
 import time
-
+import car
 # PARAMS
 
 
@@ -8,26 +8,18 @@ import time
 width = 1280
 height = 720
 
-# INIT
 
-class Car:
-    def __init__(self):
-        self.image = pygame.image.load("Car_911.png")
-        self.image = pygame.transform.scale(self.image, (103,51))
-        self.image = pygame.transform.rotate(self.image, (-90))
-        self.ps = self.image.get_rect()
-        # Rotation
 
 pygame.init()
 pygame.display.set_caption("AI Car Race")
 size = width, height
 background = pygame.display.set_mode(size)
 background.fill((255,255,255))
-car = Car()
+car = car.Car()
 background.blit(car.image, car.ps)
 pygame.display.flip()
 
-time.sleep(5)
+#time.sleep(5)
 
 # MOVEMENT
 
