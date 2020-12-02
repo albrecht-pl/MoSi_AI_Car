@@ -16,6 +16,9 @@ class Car:
         
         # Rotation
 
+    def rotate():
+        self.image = pygame.transform.rotate(self.image, (-1))
+
 
     def draw():
         print("NO")
