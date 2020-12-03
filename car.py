@@ -1,5 +1,6 @@
 import pygame
 import time
+import os
 
 class Car:
 
@@ -9,14 +10,15 @@ class Car:
     global rotation
 
     def __init__(self):
-        self.image = pygame.image.load("Car_911.png")
+        currentDirectory = os.path.dirname(os.path.abspath(__file__))
+        self.image = pygame.image.load(currentDirectory+"/Car_911.png")
         self.image = pygame.transform.scale(self.image, (103,51))
         self.image = pygame.transform.rotate(self.image, (-90))
         self.ps = self.image.get_rect()
         
         # Rotation
 
-    def rotate():
+    def rotate(self):
         self.image = pygame.transform.rotate(self.image, (-1))
 
 
