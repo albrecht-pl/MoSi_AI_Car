@@ -1,6 +1,7 @@
 import pygame
 import time
 import car
+from car import Car, Bewegung
 # PARAMS
 
 
@@ -15,7 +16,7 @@ pygame.display.set_caption("AI Car Race")
 size = width, height
 background = pygame.display.set_mode(size)
 background.fill((255,255,255))
-car = car.Car()
+car = Car()
 background.blit(car.image, car.ps)
 pygame.display.flip()
 
@@ -30,3 +31,7 @@ for counter_move in range(1,50):
     background.blit(car.image, car.ps)
     pygame.display.flip()
     time.sleep(0.02)
+
+while True:
+    Bewegung(car)
+    pygame.display.flip()
