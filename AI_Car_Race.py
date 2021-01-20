@@ -1,7 +1,7 @@
 import pygame
 import time
 import car
-from car import Car, Bewegung
+from car import Car
 # PARAMS
 
 
@@ -20,6 +20,8 @@ car = Car()
 background.blit(car.image, car.ps)
 pygame.display.flip()
 
+
+getTicksLastFrame = 0
 #time.sleep(5)
 
 # MOVEMENT
@@ -33,5 +35,12 @@ for counter_move in range(1,50):
     time.sleep(0.02)
 
 while True:
-    Bewegung(car)
-    pygame.display.flip()
+    t = pygame.time.get_ticks()
+    # deltaTime in seconds.
+    deltaTime = (t - getTicksLastFrame) #/ 1000.0
+    
+    car.keyListener()
+    car.move(deltaTime)
+    car.draw(pygame,background)
+    pygame.event.pump()
+    getTicksLastFrame = t

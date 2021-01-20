@@ -11,57 +11,83 @@ class Car:
         self.image = pygame.transform.scale(self.image, (103,51))
         self.image = pygame.transform.rotate(self.image, (-90))
         self.ps = self.image.get_rect()
-        self.car_speed = 0
-        self.x = 0
-        self.y = 0
+        self.velocity = 0
+        self.x = 10
+        self.y = 51
         self.rotation = 0
+        self.step = 0 # DEBUG
         
-        # Rotation
+    # Rotation
 
     def rotate(self):
         self.image = pygame.transform.rotate(self.image, (-1))
 
 
-    def draw(self):
-#<<<<<<< Updated upstream
-        print("NO")
-#=======
+    def draw(self, pg, bg):
+        bg.fill((255,255,255))
+        bg.blit(self.image, self.ps)
+        pg.display.flip()
+
 
     def acceleration(self):
-
-        self.car_speed +=  0.1
-        time.sleep(0.02)
-        print("Beschleunigen")
+        self.velocity += 0.01
+        #print("Beschleunigen")
 
     def brake(self):
-        self.car_speed -= 0.1
-        time.sleep(0.02)
-        print("Bremsen")
+        self.velocity -= 0.01
+#        print("Bremsen")
 
-    def sail (self):
-        self.car_speed +=  0
-        print("Geschwindigkeit halten")
-
-
+#"""    def sail (self):
+#        self.velocity +=  0
+#        print("Geschwindigkeit halten")
+#@NotNecessary?
+#"""
 # Bewegung
+#def KeyListiner()
+    def keyListener(self):
+        self.step += 1
+        keys=pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            if self.step % 10 == 1:
+                print("n1") #self.ps = self.ps.move(-1,0)
+                
+        if keys[pygame.K_RIGHT]:
+            if self.step % 10 == 1:                       
+                print("n")#self.ps = self.ps.move(1,0)
 
+        if keys[pygame.K_UP]:
+            if self.step % 10 == 1:     
+                self.acceleration()
+                
+        if keys[pygame.K_DOWN]:
+            if self.step % 10 == 1:     
+                self.brake()
+                
+        print(self.velocity)
 
-def Bewegung(car1): #was für Variablen müssen hier rein ? x und y?
-    car_speed = 0 # muss ich in dieser Funktion car_speed einen Wert zuordnen oder funktioniert sowas mit global Variablen nicht?
+        """
+        DUal Keying!
+        for keys in pygame.key.get_pressed():
+            #if event.type
+            #if hasattr(event.key) == False:
+            #    break
+            print(keys)
+            if keys == pygame.K_LEFT:
+                print("LEFT" + str(self.step))
+            #if event.key == pygame.K_RIGHT:
+            #    print("RIGHT" + str(self.step))
+            #if event.key == pygame.K_UP:
+            #    self.acceleration()
+            #if event.key == pygame.K_DOWN:
+            #    self.brake()
+            time.sleep(1)
+            """
 
-
-    running = True
-    while running:
-        for event in pygame.event.get():
-            while event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    car1.acceleration()
-                if event.key == pygame.K_DOWN:
-                    car1.brake()
-            if event.type == pygame.KEYUP:
-                car1.sail()
-
+    #td: timedelta
+    def move(self,td):        
+        mv_x = self.velocity * td
+        mv_y = 0
+        self.ps.move_ip(mv_x, mv_y)
 
 if __name__ == '__main__':
-    car1 = Car()
-    Bewegung(car1)
+    print("Doesn't boot")
