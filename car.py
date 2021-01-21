@@ -10,6 +10,7 @@ class Car:
         self.image = pygame.image.load(currentDirectory+"/Car_911.png")
         self.image = pygame.transform.scale(self.image, (103,51))
         self.image = pygame.transform.rotate(self.image, (-90))
+        self.defimg = self.image
         self.ps = self.image.get_rect()
         self.velocity = 0
         self.x = 10
@@ -19,8 +20,12 @@ class Car:
         
     # Rotation
 
-    def rotate(self):
-        self.image = pygame.transform.rotate(self.image, (-1))
+    def rotate(self, degree):
+        self.rotation += degree
+        print(self.rotation)
+        self.image = pygame.transform.rotate(self.defimg, self.rotation)
+        #self.ps = self.image.get_rect()
+
 
 
     def draw(self, pg, bg):
@@ -49,11 +54,11 @@ class Car:
         keys=pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             if self.step % 10 == 1:
-                print("n1") #self.ps = self.ps.move(-1,0)
+                self.rotate(1)
                 
         if keys[pygame.K_RIGHT]:
             if self.step % 10 == 1:                       
-                print("n")#self.ps = self.ps.move(1,0)
+                self.rotate(-1)
 
         if keys[pygame.K_UP]:
             if self.step % 10 == 1:     

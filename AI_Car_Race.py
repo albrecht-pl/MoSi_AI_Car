@@ -34,6 +34,15 @@ for counter_move in range(1,50):
     pygame.display.flip()
     time.sleep(0.02)
 
+for counter_move in range(1,100):
+    car.rotate(1)
+    
+    background.fill((255,255,255))
+    background.blit(car.image, car.ps)
+    pygame.display.flip()
+    time.sleep(0.02)
+
+
 while True:
     t = pygame.time.get_ticks()
     # deltaTime in seconds.
